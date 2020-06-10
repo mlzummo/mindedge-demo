@@ -10928,3 +10928,9 @@ a.text-dark:focus {
   }
 }
 
+body {
+  background-image: url(/images/background.jpg?1ee642a76d06de998b549e387cf77bba);
+  background-size: cover;
+  background-attachment: fixed;
+}
+

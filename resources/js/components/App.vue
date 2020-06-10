@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-<!--        <navigation></navigation>-->
+        <navigation></navigation>
 <!--        <message></message>-->
         <router-view></router-view>
     </div>
@@ -8,12 +8,13 @@
 
 <script>
     import Vue from 'vue'
-    // import navigation from './Navigation'
+    import navigation from './Navigation'
     // import message from './Message.vue'
     // import { LOCAL_STORAGE_LOGIN_ATTEMPT_ACTION } from 'store/user/actions'
 
     export default {
         // components: { navigation, message },
+        components: { navigation },
         created() {
             // this.$store.dispatch('User/' + LOCAL_STORAGE_LOGIN_ATTEMPT_ACTION)
             //     .catch((error) => {})
