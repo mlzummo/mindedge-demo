@@ -10,11 +10,11 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        return ['hello'];
+        return response()->json(Book::with('authors')->get());
     }
 
     /**
@@ -31,14 +31,16 @@ class BookController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
         $data = $request->all();
+
         $book = new Book($data);
 
         try {
+            $book->authors()->attach($request->authors);
             $result = $book->save();
         } catch (Exception $e) {
             return response()->json([
@@ -58,7 +60,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Book::find($id)->with('books'));
     }
 
     /**
@@ -92,6 +94,7 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::find($id);
+        $book->delete();
     }
 }
