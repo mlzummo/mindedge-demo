@@ -53,6 +53,14 @@
             }
         },
         methods: {
+            makeToast(append = false) {
+                this.toastCount++
+                this.$bvToast.toast(`This is toast number ${this.toastCount}`, {
+                    title: 'BootstrapVue Toast',
+                    autoHideDelay: 5000,
+                    appendToast: append
+                })
+            },
             updateAuthors(authors) {
             },
             onSubmit(evt) {
@@ -68,9 +76,9 @@
                     },
                     body: JSON.stringify(data)
                 })
-                // .then(response => response.json() )
-                // .then(json => this.updateTable(json) )
-                // .catch(error => console.error(error) )
+                .then(response => response.json() )
+                .then(json => this.AddAuthorSuccess(json) )
+                .catch(error => console.error(error) )
                 // TODO: handle update
             },
             onReset(evt) {
@@ -85,6 +93,9 @@
                 this.$nextTick(() => {
                     this.show = true
                 })
+            },
+            AddAuthorSuccess() {
+              alert('hello')
             },
             updateAuthorsList(authors) {
                 this.authors = authors.map(author => {
