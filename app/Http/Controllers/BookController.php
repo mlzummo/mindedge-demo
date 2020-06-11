@@ -35,13 +35,20 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+//        if ($request->isJson()) {
+//            $data = $request->json()->all();
+//        } else {
+//            $data = $request->all();
+//        }
         $data = $request->all();
+
 
         $book = new Book($data);
 
         try {
-            $book->authors()->attach($request->authors);
             $result = $book->save();
+            $book->authors()->attach($request->authors);
+
         } catch (Exception $e) {
             return response()->json([
                 'result' => $e->getMessage()
