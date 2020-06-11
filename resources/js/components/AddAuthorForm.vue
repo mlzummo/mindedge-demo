@@ -3,65 +3,40 @@
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
             <b-form-group
                 id="input-group-1"
-                label="Book Title:"
+                label="Author First Name:"
                 label-for="input-1"
-                description="desc: enter book title"
+                description="Enter author first name"
             >
                 <b-form-input
                     id="input-1"
-                    v-model="form.title"
+                    v-model="form.first_name"
                     required
-                    placeholder="Enter Book Title"
+                    placeholder="Enter author first name"
                 ></b-form-input>
             </b-form-group>
-            <b-form-group id="input-group-2" label="Authors:" label-for="input-2">
-                <multiselect v-model="form.authors" :options="authors" :multiple="true" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Select Authors" label="name" track-by="id" :preselect-first="false" > <!-- @input="updateAuthors" -->
-                    <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} options selected</span></template>
-                </multiselect>
-<!--                <pre class="language-json"><code>{{ value  }}</code></pre>-->
+
+            <b-form-group id="input-group-2" label="Author Last Name:" label-for="input-2">
+                <b-form-input
+                    id="input-2"
+                    v-model="form.last_name"
+                    required
+                    placeholder="Enter author last name"
+                ></b-form-input>
             </b-form-group>
 
-
-<!--            <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">-->
-<!--                <b-form-input-->
-<!--                    id="input-2"-->
-<!--                    v-model="form.name"-->
-<!--                    required-->
-<!--                    placeholder="Enter name"-->
-<!--                ></b-form-input>-->
-<!--            </b-form-group>-->
-
-            <b-form-group id="input-group-3" label="Description:" label-for="input-3">
+            <b-form-group id="input-group-3" label="Age:" label-for="input-3">
                 <b-form-input
                     id="input-3"
-                    v-model="form.description"
+                    v-model="form.age"
+                    type="number"
                     required
-                    placeholder="Description"
+                    placeholder="50"
                 ></b-form-input>
             </b-form-group>
-
-            <b-form-group id="input-group-4" label="MSRP:" label-for="input-4">
-                <b-form-input
-                    id="input-4"
-                    v-model="form.msrp"
-                    required
-                    placeholder="10.00"
-                ></b-form-input>
-            </b-form-group>
-
-<!--            <b-form-group id="input-group-4">-->
-<!--                <b-form-checkbox-group v-model="form.checked" id="checkboxes-4">-->
-<!--                    <b-form-checkbox value="me">Check me out</b-form-checkbox>-->
-<!--                    <b-form-checkbox value="that">Check that out</b-form-checkbox>-->
-<!--                </b-form-checkbox-group>-->
-<!--            </b-form-group>-->
 
             <b-button type="submit" variant="primary">Submit</b-button>
             <b-button type="reset" variant="danger">Reset</b-button>
         </b-form>
-<!--        <b-card class="mt-3" header="Form Data Result">-->
-<!--            <pre class="m-0">{{ form }}</pre>-->
-<!--        </b-card>-->
     </div>
 </template>
 
@@ -70,22 +45,11 @@
         data () {
             return {
                 form: {
-                    title: '',
-                    authors: null,
-                    description: '',
-                    msrp: ''
+                    'first_name': '',
+                    'last_name': '',
+                    age: ''
                 },
-                show: true,
-                // value: [],
-                // options: [
-                //     { name: 'Vue.js', language: 'JavaScript' },
-                //     { name: 'Adonis', language: 'JavaScript' },
-                //     { name: 'Rails', language: 'Ruby' },
-                //     { name: 'Sinatra', language: 'Ruby' },
-                //     { name: 'Laravel', language: 'PHP' },
-                //     { name: 'Phoenix', language: 'Elixir' }
-                // ],
-                authors: []
+                show: true
             }
         },
         methods: {
@@ -93,19 +57,11 @@
             },
             onSubmit(evt) {
                 evt.preventDefault()
-                // let data = JSON.stringify(this.form)
                 let data = this.form;
 
-
-                // submit just the id's of the authors
-                let authorIdList = [];
-                data.authors.forEach((author) => {
-                    authorIdList.push(author.id);
-                });
-                data.authors = authorIdList;
-
-                console.log(data)
-                fetch('http://mindedge-demo.test:8080/api/books', {
+                console.warn(data)
+                console.log('dd');
+                fetch('/api/authors', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
