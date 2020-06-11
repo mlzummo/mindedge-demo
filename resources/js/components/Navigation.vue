@@ -38,9 +38,9 @@
 <!--                        <a href="#">Home</a>-->
 <!--                        <a href="#">Home</a>-->
 <!--                        <a href="#">Home</a>-->
-                        <b-nav-item right href="#">Home</b-nav-item>
-                        <b-nav-item right href="#">Books</b-nav-item>
-                        <b-nav-item right href="#">Authors</b-nav-item>
+                        <b-nav-item right href="/">Home</b-nav-item>
+                        <b-nav-item right href="/books">Books</b-nav-item>
+                        <b-nav-item right href="/authors">Authors</b-nav-item>
 
 
                 </b-navbar-nav>
