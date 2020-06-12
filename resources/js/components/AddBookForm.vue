@@ -105,7 +105,7 @@
                 data.authors = authorIdList;
 
                 console.log(data)
-                fetch('http://mindedge-demo.test:8080/api/books', {
+                fetch('/api/books', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
